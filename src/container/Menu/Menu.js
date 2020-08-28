@@ -2,7 +2,7 @@ import React from 'react';
 import styled from 'styled-components';
 import { Nav, NavItem, NavLink } from 'reactstrap';
 
-const baseLinkStyle = `
+const StyledLink = styled(NavLink)`
   text-transform: uppercase;
   font-weight: bold;
   font-size: 1rem;
@@ -12,26 +12,22 @@ const baseLinkStyle = `
   .nav-item:not(:last-child) & {
     margin-right: 15px;
   }
-
-  &:hover {
-    color: #333333;
-  }
-`;
-
-const StyledLink = styled(NavLink)`
-  ${baseLinkStyle}
-
+  
   &.active {
     color: #662D91;
-    border-bottom: 4px solid white;
+    border-bottom: 4px solid #662D91;
   }
+  &:hover {
+    color: white;
+    text-decoration: none;
+  }
+
 `;
 
 const itens = [
     { nome: "Início", link: "/" },
-    { nome: "Projeto", link: "/Mapa" },
-    { nome: "Leis", link: "#Leis-De-Acessibilidade" },
     { nome: "Sobre", link: "#Sobre-o-Projeto" },
+    { nome: "Leis", link: "#Leis-De-Acessibilidade" },
     { nome: "Quem Somos?", link: "#Quem-Somos" },
     { nome: "Cadastro", link: "#Cadastro" }
 ]
@@ -41,12 +37,13 @@ const Menu = () => {
     return (
         <Nav className="mr-0 ml-auto" navbar>
             {itens.map(item => {
-                return(
-                <NavItem>
-                    <StyledLink href={item.link} activeClassName="active" key={item.nome}>{item.nome}</StyledLink>
-                </NavItem>
+                return (
+                    <NavItem>
+                        <StyledLink href={item.link} activeClassName="active" key={item.nome}>{item.nome}</StyledLink>
+                    </NavItem>
                 )
             })}
+
 
 
             {/* <NavItem>
