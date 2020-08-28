@@ -1,10 +1,11 @@
 import React from 'react'
+import { Container } from 'reactstrap'
 
 const Sobre = () => {
     return (
-        <div>
+        <Container>
             <p>Olá, bem vindo ao Sobre o projeto</p>
-        </div>
+        </Container>
     )
 }
 

@@ -1,10 +1,11 @@
 import React from 'react'
+import { Container } from 'reactstrap'
 
 const QuemSomos = () => {
     return (
-        <div>
+        <Container>
             <p>Olá, bem vindo a quem somos?</p>
-        </div>
+        </Container>
     )
 }
 
