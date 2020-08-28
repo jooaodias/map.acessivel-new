@@ -1,12 +1,12 @@
 import React, {Component} from 'react';
 
-import Menu from '../Menu/Menu';
+import { Header } from '../Menu/Header';
 
 class Layout extends Component{
     render(){
         return(
             <div className="Layout">
-                <Menu />
+                <Header />
                 <main className="Content">
                     {this.props.children}
                 </main>

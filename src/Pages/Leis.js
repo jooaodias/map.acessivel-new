@@ -1,10 +1,9 @@
 import React from 'react';
-import Card_Leis from '../Card_Leis/Card_Leis';
-import { Row, Col, Container } from 'reactstrap';
+import Card_Leis from '../components/Card_Leis/Card_Leis';
+import { Row, Col } from 'reactstrap';
 
-const leis = (props) =>{
+const leis = () =>{
     return(
-        <Container>
             <Row>
                 <Col sm="4">
                     <Card_Leis 
@@ -27,8 +26,7 @@ const leis = (props) =>{
                         text = {"Dispõe sobre período mínimo de gratuidade em estacionamentos para veículos automotores utilizados por pessoas portadoras de necessidades especiais."}
                     />
                 </Col>
-            </Row>
-        </Container>
+        </Row>
     )
 }
 

@@ -1,9 +1,8 @@
 import React, {Component} from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import Home from './components/Home/Home';
+import Home from './Pages/Home';
 import Mapa from './components/Map/Map';
-import Leis from './components/Leis/Leis';
 
 class Routes extends Component{
     render(){
@@ -11,7 +10,6 @@ class Routes extends Component{
             <Switch>
                 <Route exact path="/" component={Home}/>
                 <Route exact path="/Mapa" component={Mapa}/>
-                <Route exact path="/Leis-de-Acessibilidade" component={Leis}/>
 
                 <Redirect to="/"/>
             </Switch>
