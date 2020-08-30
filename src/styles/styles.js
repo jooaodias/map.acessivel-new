@@ -1,4 +1,4 @@
-export const getColor = ({ color = 'primaryColor', theme }) => {
+export const getColor = ({ color = 'azulEscuro', theme }) => {
   const colorOptions = Object.keys(theme);
   const themeColorKey = colorOptions.find(colorOption => colorOption === color);
   return themeColorKey ? theme[themeColorKey] : color;
