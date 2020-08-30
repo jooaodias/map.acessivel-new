@@ -16,7 +16,7 @@ export const Header = () => {
         <Row>
           <Navbar className="col" light expand="md">
             <Link to="/">
-              <img src={logo} alt="Logo aMap" />
+              <img src={logo} alt="Logo aMap" width="40px"/>
             </Link>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>

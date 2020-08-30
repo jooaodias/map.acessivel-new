@@ -1,24 +1,29 @@
 import React from 'react';
 import styled from 'styled-components';
-import { Nav, NavItem, NavLink } from 'reactstrap';
+import { Nav, NavItem } from 'reactstrap';
+import { NavLink } from 'react-router-dom';
 
 const StyledLink = styled(NavLink)`
   text-transform: uppercase;
   font-weight: bold;
-  font-size: 1rem;
-  color: #333333;
+  font-size: 1rem; 
+  color: #4A619F;
   cursor: pointer;
+  text-decoration: none;
+  padding-right: .5rem;
+  padding-left: .5rem;
 
   .nav-item:not(:last-child) & {
     margin-right: 15px;
   }
   
-  &.active {
-    color: #662D91;
-    border-bottom: 4px solid #662D91;
-  }
+  /* &.active {
+    color: #4593ee;
+    border-bottom: 4px solid #4593ee;
+  } */
   &:hover {
-    color: white;
+    color: #4593ee;
+    border-bottom: 4px solid #4593ee;
     text-decoration: none;
   }
 
@@ -38,8 +43,8 @@ const Menu = () => {
         <Nav className="mr-0 ml-auto" navbar>
             {itens.map(item => {
                 return (
-                    <NavItem>
-                        <StyledLink href={item.link} activeClassName="active" key={item.nome}>{item.nome}</StyledLink>
+                    <NavItem key={`${item.nome}+${item.link}`}>
+                        <StyledLink to={item.link} activeClassName="active" >{item.nome}</StyledLink>
                     </NavItem>
                 )
             })}
@@ -47,12 +52,12 @@ const Menu = () => {
 
 
             {/* <NavItem>
-                <StyledLink href="/" activeClassName="active">
+                <StyledLink to="/" activeClassName="active">
                     Início
                 </StyledLink>
             </NavItem>
             <NavItem>
-                <StyledLink href="/Mapa" activeClassName="active">
+                <StyledLink to="/Mapa" activeClassName="active">
                     Projeto
                 </StyledLink>
             </NavItem> */}
