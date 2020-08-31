@@ -1,14 +1,14 @@
 import React, {Component} from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 
-import Home from './Pages/Home';
+import LandingPage from './pages/LandingPage';
 import Mapa from './components/Map/Map';
 
 class Routes extends Component{
     render(){
         let routes = (
             <Switch>
-                <Route exact path="/" component={Home}/>
+                <Route exact path="/" component={LandingPage}/>
                 <Route exact path="/Mapa" component={Mapa}/>
 
                 <Redirect to="/"/>
