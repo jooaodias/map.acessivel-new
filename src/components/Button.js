@@ -10,9 +10,9 @@ const StyledButton = styled(({ light, bold, ...props }) => <BootButton {...props
   transition: filter .2s;
   will-change: filter, color;
   color: ${props => props.light ? "#fff": colors.preto};
-  border-radius: 10px;
+  border-radius: 20px;
   font-size: 16px;
-  font-weight: ${props => props.bold ? 700 : 400 };
+  font-weight: ${props => props.bold ? 700 : 500 };
   
   &:hover {
     color: ${props => props.light ?"#fff": colors.preto};
