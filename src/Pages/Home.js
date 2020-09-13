@@ -8,11 +8,11 @@ import { Button } from '../components/Button';
 import humano from '../assets/images/humanos.png';
 
 const StyledHeader = styled.header`
-  background-color: #FFF9F1;
-  background-image: url(${require('../assets/images/pattern-alto.png')});
+  background-image: url(${require('../assets/images/fundoHome.png')});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;
+  margin-bottom: 40px;
 `
 
 const StyledCol = styled(Col)`
