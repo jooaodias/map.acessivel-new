@@ -2,18 +2,18 @@ import React from 'react';
 
 import Home from './Home';
 import Leis from './Leis';
-import Sobre from './Sobre';
+import Projeto from './oProjeto';
 import Cadastro from './Cadastro';
 import QuemSomos from './QuemSomos';
 
 const LandingPage = () => {
     return (
         <div>
-            <Home />
-            <Sobre />
-            <Leis />
-            <QuemSomos />
-            <Cadastro />
+            <div id="/"> <Home /> </div>
+            <div id="o-Projeto"> <Projeto /> </div>
+            <div id="Leis-De-Acessibilidade"> <Leis /> </div>
+            <div id="Quem-Somos"> <QuemSomos /> </div>
+            <div id="Cadastro"> <Cadastro/> </div>
         </div>
     )
 }
