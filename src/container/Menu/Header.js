@@ -4,7 +4,7 @@ import { Container, Row, Collapse, Navbar, NavbarToggler } from 'reactstrap';
 
 import Menu from './Menu';
 
-import logo from '../../assets/icon/favicon.png';
+import logo from '../../assets/images/logo.png';
 
 export const Header = () => {
   const [isOpen, setIsOpen] = useState(false);
@@ -16,7 +16,7 @@ export const Header = () => {
         <Row>
           <Navbar className="col" light expand="md">
             <Link to="/">
-              <img src={logo} alt="Logo aMap" width="40px"/>
+              <img src={logo} alt="Logo aMap" />
             </Link>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>

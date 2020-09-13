@@ -8,15 +8,23 @@ const StyledLink = styled(NavLink)`
   font-weight: bold;
   font-size: 1rem; 
   color: #4A619F;
-  cursor: pointer;
+  cursor: pointer; 
   text-decoration: none;
   padding-right: .5rem;
   padding-left: .5rem;
+
+  .nav-item:not(:last-child) & {
+    margin-right: 20px;
+  }
   
   &:hover {
     color: #4593ee;
     border-bottom: 4px solid #4593ee;
     text-decoration: none;
+  }
+
+  &:active {
+    border-bottom: 4px solid #4593ee;
   }
 
 `;
@@ -37,13 +45,14 @@ const HelpLinkStyled = styled(NavLink)`
   &:hover {
     text-decoration: none;
     filter: brightness(0.9) contrast(1.2);
+    color: white;
   }
   
 `;
 
 const itens = [
     { nome: "Início", link: "/" },
-    { nome: "Sobre", link: "#Sobre-o-Projeto" },
+    { nome: "O Projeto", link: "#o-Projeto" },
     { nome: "Leis", link: "#Leis-De-Acessibilidade" },
     { nome: "Quem Somos?", link: "#Quem-Somos" },
     // { nome: "Ajude", link: "#Cadastro" }
@@ -52,7 +61,7 @@ const itens = [
 const Menu = () => {
 
     return (
-        <Nav className="mr-0 ml-auto" navbar>
+        <Nav className="mr-0 ml-auto my-4" navbar>
             {itens.map(item => {
                 return (
                     <NavItem key={`${item.nome}+${item.link}`}  >
@@ -61,7 +70,7 @@ const Menu = () => {
                 )
             })}
             <NavItem>
-                <HelpLinkStyled to="#Cadastro">Ajude!</HelpLinkStyled>
+                <HelpLinkStyled to="#Cadastro" className="px-5">Ajude</HelpLinkStyled>
             </NavItem>
 
 
