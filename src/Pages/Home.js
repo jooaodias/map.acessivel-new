@@ -33,7 +33,7 @@ const Home = () => {
                     <StyledCol xs="12" md="5" className="text-left">
                         <Title tag="h1" color="#4A619F" weight="700" size="24px">Sua acessibilidade em um clique!</Title>
                         <Title tag="h2" color="#4A619F" weight="500" className="h4 mt-4" size="18px" >Deseja apenas visualizar os estabelecimentos acessíveis de sua região?</Title>
-                        <StyledButton block light size="lg" color="4A619F" name="subscribe" type="submit" className="mt-4" >Busque agora!</StyledButton>
+                        <StyledButton block light size="lg" color="4A619F" name="subscribe" type="submit" className="mt-4 mb-4" >Busque agora!</StyledButton>
                     </StyledCol>
                     <Col md="6">
                         <div>
