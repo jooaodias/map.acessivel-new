@@ -33,21 +33,21 @@ const QuemSomos = () => {
                 <Row noGutters className="justify-content-center text-center">
                     <Col md="3" className="mt-2">
                         <img src={fotoA} alt="Foto da Ana" />
-                        <Title className="mt-2" size="1.2rem" tag="h6" color="white">
+                        <Title className="mt-2" size="1.2rem" tag="h3" color="white">
                             Ana Clara
                         </Title>
                     </Col>
 
                     <Col md="3" className="mt-2">
                         <img src={fotoJ} alt="Foto do João" />
-                        <Title className="mt-2" size="1.2rem" tag="h6" color="white">
+                        <Title className="mt-2" size="1.2rem" tag="h3" color="white">
                             João Vitor
                         </Title>
                     </Col>
 
                     <Col md="3" className="mt-2">
                         <img src={fotoL} alt="Foto do Luiz" />
-                        <Title className="mt-2" size="1.2rem" tag="h6" color="white" bold>
+                        <Title className="mt-2" size="1.2rem" tag="h3" color="white" bold>
                             Luiz Roberto
                         </Title>
                     </Col>
