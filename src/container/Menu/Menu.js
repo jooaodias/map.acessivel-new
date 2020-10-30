@@ -47,35 +47,39 @@ const HelpLinkStyled = styled(NavLink)`
     filter: brightness(0.9) contrast(1.2);
     color: white;
   }
+
+  @media(max-width: 800px) {
+    margin-top: 30px;
+  }
   
 `;
 
 const itens = [
-    { nome: "Início", link: "/" },
-    { nome: "O Projeto", link: "#o-Projeto" },
-    { nome: "Leis", link: "#Leis-De-Acessibilidade" },
-    { nome: "Quem Somos?", link: "#Quem-Somos" },
-    // { nome: "Ajude", link: "#Cadastro" }
+  { nome: "Início", link: '/' },
+  { nome: "O Projeto", link: "#oProjeto" },
+  { nome: "Leis", link: '/#LeisDeAcessibilidade' },
+  { nome: "Quem Somos?", link: '#QuemSomos' },
+  // { nome: "Ajude", link: "#Cadastro" }
 ]
 
 const Menu = () => {
 
-    return (
-        <Nav className="mr-0 ml-auto my-4" navbar>
-            {itens.map(item => {
-                return (
-                    <NavItem key={`${item.nome}+${item.link}`}  >
-                        <StyledLink to={item.link} activeClassName="active">{item.nome}</StyledLink>
-                    </NavItem>
-                )
-            })}
-            <NavItem>
-                <HelpLinkStyled to="#Cadastro" className="px-5">Ajude</HelpLinkStyled>
-            </NavItem>
+  return (
+    <Nav className="mr-0 ml-auto my-4" navbar>
+      {itens.map(item => {
+        return (
+          <NavItem key={`${item.nome}+${item.link}`} className="mt-2" >
+            <StyledLink to={item.link} activeClassName="active">{item.nome}</StyledLink>
+          </NavItem>
+        )
+      })}
+      <NavItem className="mt-3 mt-md-2">
+        <HelpLinkStyled to="#Cadastro" className="px-5">Ajude</HelpLinkStyled>
+      </NavItem>
 
 
 
-            {/* <NavItem>
+      {/* <NavItem>
                 <StyledLink to="/" activeClassName="active">
                     Início
                 </StyledLink>
@@ -85,8 +89,8 @@ const Menu = () => {
                     Projeto
                 </StyledLink>
             </NavItem> */}
-        </Nav>
-    );
+    </Nav>
+  );
 };
 
 export default Menu;

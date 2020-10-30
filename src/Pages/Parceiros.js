@@ -4,8 +4,8 @@ import styled from 'styled-components';
 import { Title } from "../styles/Title";
 
 import fotoM from '../assets/images/team/mateus.png';
-import fotoA from '../assets/images/team/ana.png';
-import fotoL from '../assets/images/team/luiz.png';
+import fotoA from '../assets/images/team/andre.png';
+import fotoL from '../assets/images/team/leo.png';
 
 const Text = styled.p`
   margin-top: 5px;
@@ -31,7 +31,7 @@ const Parceiros = () => {
             <Linha fluid >
                 <Row noGutters className="justify-content-center text-center">
                     <Col md="3" className="mt-2">
-                        <img src={fotoM} alt="Foto do Mateus" />
+                        <img src={fotoM} alt="Foto do Mateus" id="fotoMateus"/>
                         <Title className="mt-2" size="1.2rem" tag="h3" color="white">
                             Mateus Santos
                         </Title>
@@ -40,14 +40,14 @@ const Parceiros = () => {
                     <Col md="3" className="mt-2">
                         <img src={fotoA} alt="Foto do André" />
                         <Title className="mt-2" size="1.2rem" tag="h3" color="white">
-                            João Vitor
+                            André Bordignon
                         </Title>
                     </Col>
 
                     <Col md="3" className="mt-2">
-                        <img src={fotoL} alt="Foto do Luiz" />
+                        <img src={fotoL} alt="Foto do Leonardo" />
                         <Title className="mt-2" size="1.2rem" tag="h3" color="white" bold>
-                            Luiz Roberto
+                            Leonardo Rocco
                         </Title>
                     </Col>
                 </Row>

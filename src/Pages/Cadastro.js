@@ -66,7 +66,7 @@ const Cadastro = () => {
                         <FormGroup check className="mt-4">
                             <Label check>
                                 <Input type="checkbox" style={{transform: 'scale(1.3) translateY(-1px) translateX(2px)'}}/>{'   '}
-                                <b>Aceito os termos de uso.</b>
+                                <b className="ml-1">Aceito os termos de uso.</b>
                             </Label>
                         </FormGroup>
                         <ButtonStyled className="px-5 py-2 mt-3">Ajude</ButtonStyled>
