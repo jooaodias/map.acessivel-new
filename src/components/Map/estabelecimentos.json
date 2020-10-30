@@ -1,0 +1,34 @@
+{
+  "features": [
+    {
+      "type": "Feature",
+      "properties": {
+        "LOCAL_ID": 960,
+        "NAME": "McDonald's",
+        "DESCRIPTIO": "Rede de fast-food conhecida por seus hambúrgueres, batatas fritas e milk shakes."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -47.0612952,
+          -22.9056356
+        ]
+      }
+    },
+    {
+      "type": "Feature",
+      "properties": {
+        "LOCAL_ID": 820,
+        "NAME": "Restaurante Rosário",
+        "DESCRIPTIO": "Restaurante decorado oferece opções variadas de massas, carnes, pizza e chope em ambiente de muita animação."
+      },
+      "geometry": {
+        "type": "Point",
+        "coordinates": [
+          -47.0611225,
+          -22.9041003
+        ]
+      }
+    }
+  ]
+}
