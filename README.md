@@ -1,4 +1,4 @@
-# aMap - Acessibilidade para todos
+# aMap - Acessibilidade em Mapa
 
 Projeto aMap - Mapa de Acessibilidade
 Equipe formado por estudantes do IFSP Campinas
