@@ -14,7 +14,7 @@ export const Header = () => {
     <header>
       <Container>
         <Row>
-          <Navbar className="col" light expand="md">
+          <Navbar className="col" light expand="md" s>
             <Link to="/">
               <img src={logo} alt="Logo aMap" />
             </Link>
