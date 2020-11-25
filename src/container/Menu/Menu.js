@@ -74,7 +74,7 @@ const Menu = () => {
         )
       })}
       <NavItem className="mt-3 mt-md-2">
-        <HelpLinkStyled to="#Cadastro" className="px-5">Ajude</HelpLinkStyled>
+        <HelpLinkStyled to="/login" className="px-5">Ajude</HelpLinkStyled>
       </NavItem>
 
 
