@@ -1,68 +1,30 @@
 import React from 'react';
-import styled from 'styled-components';
 import { Nav, NavItem } from 'reactstrap';
-import { NavLink } from 'react-router-dom';
+import { useHistory } from 'react-router-dom';
+import firebase from 'firebase/app'
 
-const StyledLink = styled(NavLink)`
-  text-transform: uppercase;
-  font-weight: bold;
-  font-size: 1rem; 
-  color: #4A619F;
-  cursor: pointer; 
-  text-decoration: none;
-  padding-right: .5rem;
-  padding-left: .5rem;
+import { HelpLinkStyled, LogoutButton, StyledLink } from './Menu.styled';
 
-  .nav-item:not(:last-child) & {
-    margin-right: 20px;
-  }
-  
-  &:hover {
-    color: #4593ee;
-    border-bottom: 4px solid #4593ee;
-    text-decoration: none;
-  }
+function Menu(props) {
+  const history = useHistory();
 
-  &:active {
-    border-bottom: 4px solid #4593ee;
-  }
+  const handleLogout = () => {
+    firebase
+      .auth()
+      .signOut()
+      .then(() => {
+        history.push('/');
+        document.location.reload(true)
+      });
+  };
 
-`;
-
-const HelpLinkStyled = styled(NavLink)`
-  font-size: 1rem; 
-  color: white;
-  cursor: pointer;
-  text-decoration: none;
-  margin-right: 15px;
-  background-color: #4A619F;
-  border-radius: 20px;
-  transition: filter .2s;
-  will-change: filter, color;
-  font-weight: 500;
-  padding: 10px;
-
-  &:hover {
-    text-decoration: none;
-    filter: brightness(0.9) contrast(1.2);
-    color: white;
-  }
-
-  @media(max-width: 800px) {
-    margin-top: 30px;
-  }
-  
-`;
-
-const itens = [
-  { nome: "Início", link: '/' },
-  { nome: "O Projeto", link: "#oProjeto" },
-  { nome: "Leis", link: '/#LeisDeAcessibilidade' },
-  { nome: "Quem Somos?", link: '#QuemSomos' },
-  // { nome: "Ajude", link: "#Cadastro" }
-]
-
-const Menu = () => {
+  const itens = [
+    { nome: "Início", link: '/' },
+    { nome: "O Projeto", link: "#oProjeto" },
+    { nome: "Leis", link: '/#LeisDeAcessibilidade' },
+    { nome: "Quem Somos?", link: '#QuemSomos' },
+    // { nome: "Ajude", link: "#Cadastro" }
+  ]
 
   return (
     <Nav className="mr-0 ml-auto my-4" navbar>
@@ -73,24 +35,27 @@ const Menu = () => {
           </NavItem>
         )
       })}
-      <NavItem className="mt-3 mt-md-2">
-        <HelpLinkStyled to="/login" className="px-5">Ajude</HelpLinkStyled>
-      </NavItem>
+      {props.user ? (
+        <>
+          <NavItem className="mt-3 mt-md-2">
+            <HelpLinkStyled to="/" className="px-5">{props.user}</HelpLinkStyled>
+          </NavItem>
+          <NavItem className="mt-3 mt-md-2">
+            <LogoutButton onClick={handleLogout} className="px-5">Sair</LogoutButton>
+          </NavItem>
+        </>
+      ) : (
+          <NavItem className="mt-3 mt-md-2">
+            <HelpLinkStyled to="/login" className="px-5">Ajude</HelpLinkStyled>
+          </NavItem>
+        )}
+      {}
 
 
-
-      {/* <NavItem>
-                <StyledLink to="/" activeClassName="active">
-                    Início
-                </StyledLink>
-            </NavItem>
-            <NavItem>
-                <StyledLink to="/Mapa" activeClassName="active">
-                    Projeto
-                </StyledLink>
-            </NavItem> */}
     </Nav>
-  );
+
+  )
+
 };
 
 export default Menu;

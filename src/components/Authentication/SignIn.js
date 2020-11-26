@@ -4,41 +4,46 @@ import { Title } from '../../styles/Title';
 import { Text, InputStyled, ButtonStyled } from './SignIn.styled'
 
 import firebase from 'firebase/app';
-import LandingPage from '../../pages/LandingPage';
 import SocialSignIn from './SocialSignIn';
-import { NavLink } from 'react-router-dom';
+import { NavLink, useHistory } from 'react-router-dom';
 
 const SignIn = (updateErrorMessage) => {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
+    const history = useHistory();
 
     const handleSubmit = async (event) => {
         event.preventDefault();
         setLoading(true);
-        const fields = event.target.elements;
+        const password = document.getElementById('password').value;
+        const email = document.getElementById('email').value;
 
         await firebase
             .auth()
-            .signInWithEmailAndPassword(
-                fields.email.value.trim(),
-                fields.password.value,
-            )
-            .catch(handleSignupFailure);
+            .signInWithEmailAndPassword(email, password)
+            .catch(handleSignupFailure)
+            .then(history.push('/'));
 
+
+        setLoading(false);
     }
 
     const handleSignupFailure = (error) => {
         switch (error.code) {
-            case 'auth/email-already-in-use': {
-                return setErrorMessage('Este e-mail já está em uso.');
-            }
-
             case 'auth/invalid-email': {
-                return setErrorMessage('O formato do e-mail informado é inválido.');
+                return setErrorMessage('E-mail inválido.');
             }
 
-            case 'auth/weak-password': {
-                return setErrorMessage('Sua senha deve ter no mínimo 6 caracteres.');
+            case 'auth/user-disabled': {
+                return setErrorMessage('Usuário desabilitado.');
+            }
+
+            case 'auth/user-not-found': {
+                return setErrorMessage('Senha ou usuário inválido.');
+            }
+
+            case 'auth/wrong-password': {
+                return setErrorMessage('Senha ou usuário inválido.');
             }
 
             default: {

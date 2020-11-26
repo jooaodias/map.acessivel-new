@@ -7,11 +7,11 @@ class Layout extends Component {
     render() {
         return (
             <div className="Layout">
-                <Header />
+                <Header user={this.props.user}/>
                 <main className="Content">
                     {this.props.children}
                 </main>
-                <Footer/>
+                <Footer />
             </div >
         )
     }

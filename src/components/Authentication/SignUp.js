@@ -4,23 +4,24 @@ import { Text, InputStyled, ButtonStyled } from './SignIn.styled'
 import { Title } from '../../styles/Title';
 
 import firebase from 'firebase/app';
-import LandingPage from '../../pages/LandingPage';
+import { useHistory } from 'react-router-dom';
 
 const SignUp = () => {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
-
+    const history = useHistory();
+    console.log(firebase.auth().currentUser);
+    
     const handleSubmit = async (event) => {
         event.preventDefault();
         const password = document.getElementById('password').value;
         const email = document.getElementById('email').value;
         const name = document.getElementById('name').value;
         setLoading(true);
-        const emailAdapt = email.trim();
 
-        console.log(name, password, emailAdapt);
+        console.log(name, password, email);
         if (password) {
-            firebase.auth().createUserWithEmailAndPassword(emailAdapt, password)
+            firebase.auth().createUserWithEmailAndPassword(email, password)
                 .then(async ({ user }) => {
                     await user.updateProfile({
                         displayName: name,
@@ -29,18 +30,18 @@ const SignUp = () => {
                         .firestore()
                         .collection('users')
                         .doc(user.uid)
-                        .set(email, name);
+                        .set({ email, name });
                 })
-                .catch(handleSignupFailure);
+                .catch(handleSignupFailure)
+                .then(history.push('/'));
 
         }
 
-
         setLoading(false);
-        return <LandingPage />
 
     }
     const handleSignupFailure = (error) => {
+        console.log(error)
         switch (error.code) {
             case 'auth/email-already-in-use': {
                 return setErrorMessage('Este e-mail já está em uso.');

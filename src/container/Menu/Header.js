@@ -6,7 +6,7 @@ import Menu from './Menu';
 
 import logo from '../../assets/images/logo.png';
 
-export const Header = () => {
+export const Header = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -20,7 +20,7 @@ export const Header = () => {
             </Link>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
-              <Menu />
+              <Menu user={props.user}/>
             </Collapse>
           </Navbar>
         </Row>
