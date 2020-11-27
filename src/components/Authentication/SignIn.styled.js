@@ -34,3 +34,24 @@ export const ButtonStyled = styled(Button)`
         border: 2px solid white; 
     }
 `
+export const Box = styled.div`
+  background-color: #fff;
+  padding: 20px;
+  border-radius: 10px;
+`;
+
+export const StyledSpan = styled.span`
+  font-size: 10pt;
+  color: #707070;
+  display: block;
+  text-align: center;
+  margin: 15px 0px 25px;
+
+  button {
+    color: #4A619F;
+    font-weight: 500;
+    border: none;
+    background: transparent;
+    padding: 0;
+  }
+`;
