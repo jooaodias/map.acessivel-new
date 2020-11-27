@@ -3,7 +3,7 @@ import { NavLink } from 'react-router-dom';
 import { Button } from 'reactstrap';
 
 
-export const StyledLink = styled(NavLink)`
+export const StyledLink = styled.a`
   text-transform: uppercase;
   font-weight: bold;
   font-size: 1rem; 
@@ -73,6 +73,10 @@ export const LogoutButton = styled(Button)`
     text-decoration: none;
     filter: brightness(0.9) contrast(1.2);
     color: white;
+  }
+  
+  @media(max-width: 800px) {
+    margin-top: 20px;
   }
 
 `;
