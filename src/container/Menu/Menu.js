@@ -17,11 +17,10 @@ function Menu(props) {
         document.location.reload(true)
       });
   };
-
   const itens = [
     { nome: "Início", link: '/' },
     { nome: "O Projeto", link: "#oProjeto" },
-    { nome: "Leis", link: '/#LeisDeAcessibilidade' },
+    { nome: "Leis", link: '#LeisDeAcessibilidade' },
     { nome: "Quem Somos?", link: '#QuemSomos' },
     // { nome: "Ajude", link: "#Cadastro" }
   ]
@@ -31,16 +30,16 @@ function Menu(props) {
       {itens.map(item => {
         return (
           <NavItem key={`${item.nome}+${item.link}`} className="mt-2" >
-            <StyledLink to={item.link} activeClassName="active">{item.nome}</StyledLink>
+            <StyledLink href={item.link} activeClassName="active">{item.nome}</StyledLink>
           </NavItem>
         )
       })}
-      {props.user ? (
+      {props.user?.displayName ? (
         <>
           <NavItem className="mt-3 mt-md-2">
-            <HelpLinkStyled to="/" className="px-5">{props.user}</HelpLinkStyled>
+            <HelpLinkStyled to="/perfil" className="px-5">{props.user?.displayName}</HelpLinkStyled>
           </NavItem>
-          <NavItem className="mt-3 mt-md-2">
+          <NavItem className="mt-md-2">
             <LogoutButton onClick={handleLogout} className="px-5">Sair</LogoutButton>
           </NavItem>
         </>
