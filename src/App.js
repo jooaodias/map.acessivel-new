@@ -6,12 +6,11 @@ import firebase from 'firebase/app';
 
 function App() {
   const [user, setUser] = useState(null);
-
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
-        const displayName = firebase.auth().currentUser.displayName;
-        setUser(displayName);
+        const currentUser = firebase.auth().currentUser;
+        setUser(currentUser);
       }
     });
   }, []);
@@ -19,7 +18,7 @@ function App() {
   console.log(user);
   return (
     <Layout user={user}>
-      <Routes />
+      <Routes user={user}/>
     </Layout>
   );
 }
