@@ -14,7 +14,7 @@ export const Header = (props) => {
     <header>
       <Container>
         <Row>
-          <Navbar className="col" light expand="md" s>
+          <Navbar className="col" light expand="md" >
             <Link to="/">
               <img src={logo} alt="Logo aMap" />
             </Link>
