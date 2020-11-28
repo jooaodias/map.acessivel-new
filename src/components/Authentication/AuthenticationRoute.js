@@ -1,9 +1,9 @@
 import React, { PureComponent } from 'react';
 import firebase from 'firebase/app';
 
-import { Spinner } from 'reactstrap';
 import SignIn from './SignIn';
 import SignUp from './SignUp';
+import PageLoading from '../Loading/PageLoading';
 
 class Authentication extends PureComponent {
   state = {
@@ -40,7 +40,7 @@ class Authentication extends PureComponent {
     const { lookingForUser, isUserAuthenticated, shouldShowLoginPage } = this.state;
 
     if (lookingForUser) {
-      return <Spinner  data-testid="signup-loader" color="primary" />;
+      return <PageLoading />;
     }
 
     if (!isUserAuthenticated) {
