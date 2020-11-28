@@ -1,7 +1,16 @@
-import styled from 'styled-components';
+import styled, { keyframes } from 'styled-components';
 import { NavLink } from 'react-router-dom';
-import { Button } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 
+
+const fadeIn = keyframes`
+0% {
+  opacity: 0;
+}
+100% {
+  opacity: 1;
+}
+`
 
 export const StyledLink = styled.a`
   text-transform: uppercase;
@@ -18,7 +27,6 @@ export const StyledLink = styled.a`
   }
   
   &:hover {
-    color: #4593ee;
     border-bottom: 4px solid #4593ee;
     text-decoration: none;
   }
@@ -45,7 +53,9 @@ export const HelpLinkStyled = styled(NavLink)`
   &:hover {
     text-decoration: none;
     filter: brightness(0.9) contrast(1.2);
+    background-image: linear-gradient(to bottom right, #3E5AA9, #00ACED);
     color: white;
+    /* animation: 0.2s ${fadeIn} ease-out; */
   }
 
   @media(max-width: 800px) {
@@ -54,29 +64,14 @@ export const HelpLinkStyled = styled(NavLink)`
   
 `;
 
-export const LogoutButton = styled(Button)`
-  font-size: 1rem; 
-  color: white;
-  cursor: pointer;
-  text-decoration: none;
-  margin-right: 15px;
-  background-color: red;
-  border-radius: 20px;
-  transition: filter .2s;
-  will-change: filter, color;
-  font-weight: 500;
-  padding: 10px;
-  margin-top: -10px;
-  border: white; 
 
-  &:hover {
-    text-decoration: none;
-    filter: brightness(0.9) contrast(1.2);
-    color: white;
+export const IconMateus = styled(FontAwesomeIcon)`
+  &:hover{
+    animation: 1s ${fadeIn} ease-out;
+    color: red;
   }
-  
   @media(max-width: 800px) {
-    margin-top: 20px;
+    margin-top: 24px;
   }
+`
 
-`;

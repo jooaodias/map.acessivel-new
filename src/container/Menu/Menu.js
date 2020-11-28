@@ -3,7 +3,8 @@ import { Nav, NavItem } from 'reactstrap';
 import { useHistory } from 'react-router-dom';
 import firebase from 'firebase/app'
 
-import { HelpLinkStyled, LogoutButton, StyledLink } from './Menu.styled';
+import { HelpLinkStyled, IconMateus, StyledLink } from './Menu.styled';
+import { faSignOutAlt } from '@fortawesome/free-solid-svg-icons';
 
 function Menu(props) {
   const history = useHistory();
@@ -39,8 +40,8 @@ function Menu(props) {
           <NavItem className="mt-3 mt-md-2">
             <HelpLinkStyled to="/perfil" className="px-5">{props.user?.displayName}</HelpLinkStyled>
           </NavItem>
-          <NavItem className="mt-md-2">
-            <LogoutButton onClick={handleLogout} className="px-5">Sair</LogoutButton>
+          <NavItem className="mt-md-1">
+            <IconMateus style={{cursor: 'pointer'}} onClick={handleLogout} size="2x" icon={faSignOutAlt} color="#9e9e9e" title="Sair"/>
           </NavItem>
         </>
       ) : (
