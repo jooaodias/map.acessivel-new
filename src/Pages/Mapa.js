@@ -2,6 +2,7 @@ import React, { useState } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import * as LocalData from '../components/Map/estabelecimentos.json';
 import { Icon } from 'leaflet';
+import { ButtonStyled } from '../components/Places/Places.styled';
 
 const skater = new Icon({
     iconUrl: '/logo.png',
@@ -13,6 +14,7 @@ function Mapa() {
     const [activeLocal, setActiveLocal] = useState(null);
     console.log(LocalData.features);
     return (
+        <>
         <Map center={[-22.897475,-47.0682962]} zoom={14}>
             <TileLayer
                 attribution='&amp;copy <a href="http://osm.org/copyright">OpenStreetMap</a> contributors'
@@ -49,6 +51,9 @@ function Mapa() {
                 </Popup>
             )}
         </Map>
+        <ButtonStyled className="mt-4" href="/cadastro-local">Cadastre um Estabelecimento!</ButtonStyled>
+        <ButtonStyled className="mt-2" href="/lista-locais">Estabelecimentos Cadastrados</ButtonStyled>
+        </>
 
     )
 }
