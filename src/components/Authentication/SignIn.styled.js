@@ -1,4 +1,4 @@
-import { Button, Input} from 'reactstrap';
+import { Button, Input } from 'reactstrap';
 import styled from 'styled-components';
 
 
@@ -16,7 +16,7 @@ export const InputStyled = styled(Input)`
 
   ::placeholder,
   ::-webkit-input-placeholder {
-      color: #E5E5E5;
+      color: #9e9e9e;
   }
 `;
 
@@ -30,7 +30,7 @@ export const ButtonStyled = styled(Button)`
     width: 100%; 
 
     :hover{
-        background-color: #4593EE;
+        background-image: linear-gradient(to bottom right, #3E5AA9, #00ACED);
         border: 2px solid white; 
     }
 `
