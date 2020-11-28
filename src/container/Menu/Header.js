@@ -6,7 +6,7 @@ import Menu from './Menu';
 
 import logo from '../../assets/images/logo.png';
 
-export const Header = () => {
+export const Header = (props) => {
   const [isOpen, setIsOpen] = useState(false);
   const toggle = () => setIsOpen(!isOpen);
 
@@ -14,13 +14,13 @@ export const Header = () => {
     <header>
       <Container>
         <Row>
-          <Navbar className="col" light expand="md">
+          <Navbar className="col" light expand="md" >
             <Link to="/">
               <img src={logo} alt="Logo aMap" />
             </Link>
             <NavbarToggler onClick={toggle} />
             <Collapse isOpen={isOpen} navbar>
-              <Menu />
+              <Menu user={props.user}/>
             </Collapse>
           </Navbar>
         </Row>
