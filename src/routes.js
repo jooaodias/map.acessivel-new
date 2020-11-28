@@ -4,6 +4,8 @@ import Authentication from './components/Authentication/AuthenticationRoute';
 import ForgotPassword from './components/Authentication/ForgotPassword';
 import SignIn from './components/Authentication/SignIn';
 import SignUp from './components/Authentication/SignUp';
+import FormPlace from './components/Places/FormPlace';
+import ListPlaces from './components/Places/ListPlaces';
 
 import LandingPage from './pages/LandingPage';
 import Mapa from './pages/Mapa';
@@ -18,7 +20,7 @@ const RenderAuthenticated = (Component, props) => (
 
 class Routes extends Component {
     render() {
-        const displayName = this.props.user?.displayName; 
+        const displayName = this.props.user?.displayName;
         const routes = (
             <Switch>
                 <Route exact path="/" component={LandingPage} />
@@ -34,9 +36,17 @@ class Routes extends Component {
                     path="/mapa"
                     render={props => RenderAuthenticated(Mapa, props)}
                 />
-                 <Route
+                <Route
                     path="/perfil"
                     render={props => RenderAuthenticated(Perfil, props)}
+                />
+                <Route
+                    path="/cadastro-local"
+                    render={props => RenderAuthenticated(FormPlace, props)}
+                />
+                <Route
+                    path="/lista-locais"
+                    render={props => RenderAuthenticated(ListPlaces, props)}
                 />
                 <Redirect to="/" />
             </Switch>
