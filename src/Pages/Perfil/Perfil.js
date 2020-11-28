@@ -53,7 +53,7 @@ function Perfil() {
                 E-mail: {user?.email}
             </PerfilName>
             <div className="d-flex justify-content-center">
-            <Rotate>&lt; 😎 &gt;</Rotate>
+            <Rotate><span role="img" aria-label="Emoji de Óculos Escuros">&lt; 😎 &gt;</span></Rotate>
             </div>
         </ContainerProfile>
     )

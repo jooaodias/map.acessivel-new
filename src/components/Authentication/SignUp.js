@@ -10,7 +10,6 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const history = useHistory();
-    console.log(firebase.auth().currentUser);
     
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -19,7 +18,6 @@ const SignUp = () => {
         const name = document.getElementById('name').value;
         setLoading(true);
 
-        console.log(name, password, email);
         if (password) {
             firebase.auth().createUserWithEmailAndPassword(email, password)
                 .then(async ({ user }) => {
