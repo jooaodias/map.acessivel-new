@@ -37,7 +37,7 @@ function Perfil() {
 
     return (
         <ContainerProfile className="py-4 d-flex flex-column">
-            <PerfilTitle>Suas Informações:</PerfilTitle>
+            <PerfilTitle>PERFIL</PerfilTitle>
             <PerfilImage
                 src={user?.photoURL}
                 width="143px"
@@ -53,7 +53,7 @@ function Perfil() {
                 E-mail: {user?.email}
             </PerfilName>
             <div className="d-flex justify-content-center">
-            <Rotate><span role="img" aria-label="Emoji de Óculos Escuros">&lt; 😎 &gt;</span></Rotate>
+            <Rotate><img src="logo.png" alt="Logo aMap"></img></Rotate>
             </div>
         </ContainerProfile>
     )
