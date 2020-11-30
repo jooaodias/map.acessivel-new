@@ -7,20 +7,21 @@ import {
     Form,
     Alert,
     Spinner,
-    Modal,
-    ModalHeader,
-    ModalBody,
-    ModalFooter,
+    Container,
+    Row,
+    Col,
 } from 'reactstrap';
 import styled from 'styled-components';
 import firebase from 'firebase/app';
 
 // import errorMessages from 'constants/errorMessages';
 import { Box, StyledSpan } from './SignIn.styled';
+import { NavLink } from 'react-router-dom';
 
 const Title = styled.p`
   font-size: 20px;
   color: #4A619F;
+  font-weight: bold;
 `;
 
 const Subtitle = styled.p`
@@ -28,7 +29,7 @@ const Subtitle = styled.p`
   margin-bottom: 15px;
 `;
 
-function ForgotPassword({ hideForgotPassword, modal, toggle }) {
+function ForgotPassword() {
     const [error, setError] = useState('');
     const [success, setSuccess] = useState(false);
     const [loading, setLoading] = useState(false);
@@ -38,7 +39,7 @@ function ForgotPassword({ hideForgotPassword, modal, toggle }) {
         setLoading(true);
 
 
-        await firebase.auth().sendPasswordResetEmail(event.target.email.value)
+        await firebase.auth().sendPasswordResetEmail(event.target.email.value.trim())
             .then(function () {
                 setError('');
                 setSuccess(true);
@@ -49,6 +50,7 @@ function ForgotPassword({ hideForgotPassword, modal, toggle }) {
 
     };
     const handleSignupFailure = (error) => {
+        console.log(error)
         switch (error.code) {
             case 'auth/invalid-email': {
                 return setError('E-mail inválido.');
@@ -73,48 +75,48 @@ function ForgotPassword({ hideForgotPassword, modal, toggle }) {
     }
 
     return (
-        <Modal isOpen={modal} toggle={toggle}>
-            <Box>
-                <ModalHeader toggle={toggle}><Title>Ajuda para recuperar a senha</Title></ModalHeader>
-                <ModalBody>
-                    <Subtitle>
-                        Digite seu e-mail para recuperar sua senha. Você receberá um e-mail com
-                        instruções.
-                    </Subtitle>
-                    <Form onSubmit={handleSubmit}>
-                        {error && <Alert color="danger">{error}</Alert>}
-                        {success && (
-                            <Alert color="success">
-                                Uma solicitação foi enviada ao seu e-mail para alterar sua senha.
-                            </Alert>
-                        )}
-                        <FormGroup>
-                            <Label htmlFor="email">E-mail</Label>
-                            <Input
-                                name="email"
-                                id="email"
-                                data-testid="email-input"
-                                placeholder="Digite seu e-mail"
-                                disabled={loading}
-                            />
-                        </FormGroup>
+        <Container>
+            <Row className="justify-content-center">
+                <Col md="5" style={{ backgroundColor: '#c8c8c8', borderRadius: '10px' }}>
 
-                        <Button color="primary" block type="submit" disabled={loading}>
-                            {loading ? <Spinner color="light" size="sm" /> : 'Enviar'}
-                        </Button>
-                    </Form>
+                    <Box >
+                        <Title>Ajuda para recuperar a senha</Title>
+                        <Subtitle>
+                            Digite seu e-mail para recuperar sua senha. Você receberá um e-mail com
+                            instruções.
+                        </Subtitle>
+                        <Form onSubmit={handleSubmit} className="mt-4">
+                            {error && <Alert color="danger">{error}</Alert>}
+                            {success && (
+                                <Alert color="success">
+                                    Uma solicitação foi enviada ao seu e-mail para alterar sua senha.
+                                </Alert>
+                            )}
+                            <FormGroup>
+                                <Label htmlFor="email">E-mail</Label>
+                                <Input
+                                    name="email"
+                                    id="email"
+                                    data-testid="email-input"
+                                    placeholder="Digite seu e-mail"
+                                    disabled={loading}
+                                />
+                            </FormGroup>
 
-                    <StyledSpan>
-                        <button onClick={hideForgotPassword}>Já é cadastrado?</button>
-                    </StyledSpan>
-                </ModalBody>
-            </Box>
-            <ModalFooter>
-                <Button color="#4A619F" onClick={toggle}>
-                    Fechar
-                </Button>
-            </ModalFooter>
-        </Modal>
+                            <Button color="primary" block type="submit" disabled={loading}>
+                                {loading ? <Spinner color="light" size="sm" /> : 'Enviar'}
+                            </Button>
+                        </Form>
+
+                        <StyledSpan>
+                            <NavLink to="/login">Já é cadastrado?</NavLink>
+                        </StyledSpan>
+
+                    </Box>
+                </Col>
+            </Row>
+        </Container>
+
     );
 }
 

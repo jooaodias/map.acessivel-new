@@ -35,8 +35,7 @@ export const ButtonStyled = styled(Button)`
     }
 `
 export const Box = styled.div`
-  background-color: #fff;
-  padding: 20px;
+  padding: 50px;
   border-radius: 10px;
 `;
 
