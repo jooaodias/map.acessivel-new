@@ -8,7 +8,7 @@ import FormPlace from './components/Places/FormPlace';
 import ListPlaces from './components/Places/ListPlaces';
 
 import LandingPage from './pages/LandingPage';
-import Mapa from './pages/Mapa';
+import Maping from './pages/Maping';
 import Perfil from './pages/Perfil/Perfil';
 // import firebase from 'firebase/app';
 
@@ -34,7 +34,7 @@ class Routes extends Component {
                 </Route>
                 <Route
                     path="/mapa"
-                    render={props => RenderAuthenticated(Mapa, props)}
+                    render={props => RenderAuthenticated(Maping, props)}
                 />
                 <Route
                     path="/perfil"
