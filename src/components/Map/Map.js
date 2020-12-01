@@ -2,6 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import firebase from 'firebase/app';
+import { ButtonStyled } from '../Places/Places.styled';
 
 const skater = new Icon({
     iconUrl: '/logo.png',
@@ -12,7 +13,7 @@ const skater = new Icon({
 function Mapa() {
     const [activeLocal, setActiveLocal] = useState(null);
     const [place, setPlace] = useState([]);
-    
+
     // function LocationMarker() {
     //     const [position, setPosition] = useState(null);
     //     const map = useMapEvents({
@@ -88,6 +89,7 @@ function Mapa() {
                         <div>
                             <h2>{activeLocal.name}</h2>
                             <p>{activeLocal.description}</p>
+                            <ButtonStyled style={{color: 'white'}} className="mt-2" href={`/questionario:${activeLocal.name}`}>Responder o Questionário!</ButtonStyled>
                         </div>
 
                     </Popup>
