@@ -1,22 +1,34 @@
 import React, { useState, useEffect } from 'react'
-import { PerfilImage, ContainerProfile, PerfilName, PerfilTitle } from './Perfil.styled.js'
+import { PerfilImage, ContainerProfile, PerfilName, PerfilTitle, Rotate } from './Perfil.styled.js'
 
 import firebase from 'firebase/app';
-import styled, { keyframes } from 'styled-components';
+import { FormGroup, Input, Label } from 'reactstrap';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faCheck, faFileDownload, faUser } from '@fortawesome/free-solid-svg-icons';
 
 function Perfil() {
     const [user, setUser] = useState(null);
+    const [photo, setPhoto] = useState(null)
 
-    const rotate = keyframes`
-  from {
-    transform: rotate(0deg);
-  }
+    const clickPhoto = (event) => {
+        const file = event.target.files
+        setPhoto(file);
+    }
 
-  to {
-    transform: rotate(360deg);
-  }
-`;
-
+    const handlePhoto = (event) => {
+        console.log('passei aq');
+        user.updateProfile({
+            displayName: 'Joaozinho',
+            photoURL: photo
+        }).then(function () {
+            // Update successful.
+            console.log('SUCESSO');
+            document.location.reload(true)
+        }).catch(function (error) {
+            // An error happened.
+            console.log(error)
+        });
+    }
 
     useEffect(() => {
         firebase.auth().onAuthStateChanged(user => {
@@ -28,24 +40,32 @@ function Perfil() {
     }, []);
     console.log(user)
 
-    const Rotate = styled.div`
-    display: inline-block;
-    animation: ${rotate} 2s linear infinite;
-    padding: 2rem 1rem;
-    font-size: 1.2rem;
-    `;
 
     return (
         <ContainerProfile className="py-4 d-flex flex-column">
             <PerfilTitle>PERFIL</PerfilTitle>
-            <PerfilImage
-                src={user?.photoURL}
-                width="143px"
-                height="143px"
-                placeholderText="Foto"
-                className="border mx-auto"
-                alt={`Foto de ${user?.displayName}`}
-            />
+            <FormGroup className="text-center">
+                <Label for="exampleFile" title="Escolher Foto de Perfil" onClick={clickPhoto}>
+                    <FontAwesomeIcon icon={faFileDownload} size="lg" />
+                </Label>
+                <Input type="file" name="file" id="exampleFile" style={{ display: 'none' }} accept=".jpg, .jpeg, .png" />
+                <FontAwesomeIcon title="Salvar" className="ml-2" icon={faCheck} size="lg" onClick={handlePhoto}/>
+            </FormGroup>
+            {user?.photoURL && (
+                <PerfilImage
+                    src={user?.photoURL}
+                    width="143px"
+                    height="143px"
+                    placeholderText="Foto"
+                    className="border mx-auto"
+                    alt={`Foto de ${user?.displayName}`}
+                />
+
+            )}
+            {!user?.photoURL && (
+                <FontAwesomeIcon className="mx-auto" icon={faUser} size="8x" />
+
+            )}
             <PerfilName>
                 Nome: {user?.displayName}
             </PerfilName>
@@ -53,7 +73,7 @@ function Perfil() {
                 E-mail: {user?.email}
             </PerfilName>
             <div className="d-flex justify-content-center">
-            <Rotate><img src="logo.png" alt="Logo aMap"></img></Rotate>
+                <Rotate><img src="logo.png" alt="Logo aMap"></img></Rotate>
             </div>
         </ContainerProfile>
     )

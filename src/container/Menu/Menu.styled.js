@@ -1,6 +1,7 @@
 import styled, { keyframes } from 'styled-components';
 import { NavLink } from 'react-router-dom';
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { NavbarBrand } from 'reactstrap';
 
 
 const fadeIn = keyframes`
@@ -72,6 +73,14 @@ export const IconMateus = styled(FontAwesomeIcon)`
   }
   @media(max-width: 800px) {
     margin-top: 24px;
+  }
+`
+
+export const NameNavbarBrand = styled(NavbarBrand)`
+  margin: auto;
+
+  @media(min-width: 800px) {
+    display: none;
   }
 `
 

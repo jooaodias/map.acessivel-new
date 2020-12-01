@@ -1,5 +1,6 @@
-import styled from 'styled-components';
+import styled,  { keyframes } from 'styled-components';
 import { Container } from 'reactstrap'
+
 
 export const ContainerProfile = styled(Container)`
     display: flex;
@@ -26,3 +27,19 @@ export const PerfilName = styled.h5`
     font-weight: 700;
     margin: 11px;   
 `
+export const rotate = keyframes`
+from {
+transform: rotate(0deg);
+}
+
+to {
+transform: rotate(360deg);
+}
+`;
+
+export const Rotate = styled.div`
+    display: inline-block;
+    animation: ${rotate} 2s linear infinite;
+    padding: 2rem 1rem;
+    font-size: 1.2rem;
+    `;

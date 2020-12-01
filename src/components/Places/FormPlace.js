@@ -19,12 +19,12 @@ const FormPlace = () => {
         const ADnumber = document.getElementById('ADnumber').value;
         const phone = document.getElementById('phone').value;
         const city = document.getElementById('city').value;
-    
+        const description = document.getElementById('description').value;
         await firebase
             .firestore()
             .collection('places')
             .add({
-                name, adress, neigh, city, ADnumber, phone
+                name, adress, neigh, city, ADnumber, description, phone
             })
             .then(function () {
                 setSuccessMessage(`Cadastro Realizado com Sucesso! Em alguns instantes o ${name} estará disponível para todos`);
@@ -43,7 +43,7 @@ const FormPlace = () => {
     return (
         <Container>
             <Row className="justify-content-center">
-                <Col d="5" style={{ backgroundColor: '#c8c8c8', borderRadius: '10px' }}>
+                <Col md="5" style={{ backgroundColor: '#c8c8c8', borderRadius: '10px' }}>
                     <Row>
                         <Col className="mb-2 pt-4">  <Text style={{ fontSize: "1.3rem", fontWeight: "bold" }}>Cadastre o Estabelecimento</Text>
                             <Text>Nos ajude a crescer e incentivar aos lugares por melhoraias na acessibilidade. Insira as informações do local comercial para colocarmos automaticamente <span role="img" aria-label="Emoji">🤩</span> no <i><b>aMap</b></i></Text>
@@ -79,6 +79,11 @@ const FormPlace = () => {
                                 <FormGroup className="mb-4">
                                     <Label for="city"><Title color="#4A619F" size="1.0rem">Cidade: </Title></Label>
                                     <InputStyled type="text" id="city" placeholder="Digite o nome da Cidade" />
+                                </FormGroup>
+
+                                <FormGroup className="mb-4">
+                                    <Label for="description"><Title color="#4A619F" size="1.0rem">Descrição: </Title></Label>
+                                    <InputStyled type="text" id="description" placeholder="Digite a descrição do local:" />
                                 </FormGroup>
 
                                 <FormGroup className="mb-4">

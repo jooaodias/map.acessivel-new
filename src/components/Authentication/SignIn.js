@@ -6,14 +6,11 @@ import { Text, InputStyled, ButtonStyled, StyledSpan } from './SignIn.styled'
 import firebase from 'firebase/app';
 import SocialSignIn from './SocialSignIn';
 import { NavLink, useHistory } from 'react-router-dom';
-import ForgotPassword from './ForgotPassword';
 
-const SignIn = ({updateErrorMessage}) => {
+const SignIn = ({ updateErrorMessage }) => {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const history = useHistory();
-    const [modal, setModal] = useState(false);
-    const toggle = () => setModal(!modal);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -58,7 +55,6 @@ const SignIn = ({updateErrorMessage}) => {
     return (
         <Container >
             <Row className="justify-content-center">
-            {modal ? <ForgotPassword toggle={toggle} modal={modal}/> : null}
                 <Col md="5" style={{ backgroundColor: '#c8c8c8', borderRadius: '10px' }}>
                     <Row >
                         <Col className="mb-2 pt-4">    <Text style={{ fontSize: "1.3rem", fontWeight: "bold" }}>Faça o Login!</Text>
@@ -81,11 +77,6 @@ const SignIn = ({updateErrorMessage}) => {
                                     <Label for="password"><Title color="#4A619F" size="1.0rem">Senha</Title></Label>
                                     <InputStyled type="password" id="password" placeholder="Digite sua senha" />
                                 </FormGroup>
-                                <StyledSpan>
-                                    <button onClick={toggle}>
-                                        Esqueceu sua senha?
-                                    </button>
-                                </StyledSpan>
                                 <FormGroup check className="mt-4">
                                     <Label check>
                                         <Input type="checkbox" style={{ transform: 'scale(1.3) translateY(-1px) translateX(2px)' }} />{'   '}
@@ -95,6 +86,9 @@ const SignIn = ({updateErrorMessage}) => {
                                 <ButtonStyled className="px-5 py-2 mt-3">Entre!</ButtonStyled>
                             </Form>
                             <SocialSignIn updateErrorMessage={updateErrorMessage} />
+                            <StyledSpan>
+                                <NavLink to="/esqueci-senha">Esqueceu sua senha?</NavLink>
+                            </StyledSpan>
                         </Col>
 
                     </Row>
