@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Helmet } from "react-helmet";
 import { Alert, Col, Container, Form, FormGroup, Label, Row, Spinner } from 'reactstrap'
 import { ButtonStyled, InputStyled, Text } from './Places.styled';
 
@@ -42,6 +43,10 @@ const FormPlace = () => {
 
     return (
         <Container>
+            <Helmet>
+                <title>aMap | Cadastro-Estabelecimento</title>
+                <meta property="og:url" content={window.location.href} />
+            </Helmet>
             <Row className="justify-content-center">
                 <Col md="5" style={{ backgroundColor: '#c8c8c8', borderRadius: '10px' }}>
                     <Row>

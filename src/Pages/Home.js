@@ -1,4 +1,5 @@
 import React from 'react';
+import { Helmet } from "react-helmet";
 import { Container, Row, Col } from 'reactstrap';
 import styled from 'styled-components';
 
@@ -32,6 +33,10 @@ const StyledButton = styled(Button)`
 const Home = () => {
     return (
         <StyledHeader className="pt-5 pb-5">
+            <Helmet>
+                <title>aMap | Home</title>
+                <meta property="og:url" content={window.location.href} />
+            </Helmet>
             <Container>
                 <Row className="justify-content-around">
                     <StyledCol xs="12" md="5" className="text-left">
