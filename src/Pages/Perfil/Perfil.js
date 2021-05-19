@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from 'react'
+import { Helmet } from "react-helmet";
 import { PerfilImage, ContainerProfile, PerfilName, PerfilTitle, Rotate } from './Perfil.styled.js'
 
 import firebase from 'firebase/app';
@@ -43,13 +44,17 @@ function Perfil() {
 
     return (
         <ContainerProfile className="py-4 d-flex flex-column">
+            <Helmet>
+                <title>aMap | Perfil</title>
+                <meta property="og:url" content={window.location.href} />
+            </Helmet>
             <PerfilTitle>PERFIL</PerfilTitle>
             <FormGroup className="text-center">
                 <Label for="exampleFile" title="Escolher Foto de Perfil" onClick={clickPhoto}>
                     <FontAwesomeIcon icon={faFileDownload} size="lg" />
                 </Label>
                 <Input type="file" name="file" id="exampleFile" style={{ display: 'none' }} accept=".jpg, .jpeg, .png" />
-                <FontAwesomeIcon title="Salvar" className="ml-2" icon={faCheck} size="lg" onClick={handlePhoto}/>
+                <FontAwesomeIcon title="Salvar" className="ml-2" icon={faCheck} size="lg" onClick={handlePhoto} />
             </FormGroup>
             {user?.photoURL && (
                 <PerfilImage

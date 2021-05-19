@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Helmet } from "react-helmet";
 import { Alert, Col, Container, Form, FormGroup, Input, Label, Row, Spinner } from 'reactstrap';
 import { Title } from '../../styles/Title';
 import { Text, InputStyled, ButtonStyled, StyledSpan } from './SignIn.styled'
@@ -54,6 +55,10 @@ const SignIn = ({ updateErrorMessage }) => {
 
     return (
         <Container >
+            <Helmet>
+                <title>aMap | Login</title>
+                <meta property="og:url" content={window.location.href} />
+            </Helmet>
             <Row className="justify-content-center">
                 <Col md="5" style={{ backgroundColor: '#c8c8c8', borderRadius: '10px' }}>
                     <Row >

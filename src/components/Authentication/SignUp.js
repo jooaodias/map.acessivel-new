@@ -1,4 +1,5 @@
 import React, { useState } from 'react'
+import { Helmet } from "react-helmet";
 import { Alert, Col, Container, Form, FormGroup, Input, Label, Row, Spinner } from 'reactstrap';
 import { Text, InputStyled, ButtonStyled } from './SignIn.styled'
 import { Title } from '../../styles/Title';
@@ -10,7 +11,7 @@ const SignUp = () => {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const history = useHistory();
-    
+
     const handleSubmit = async (event) => {
         event.preventDefault();
         const password = document.getElementById('password').value;
@@ -60,6 +61,10 @@ const SignUp = () => {
     }
     return (
         <Container>
+            <Helmet>
+                <title>aMap | Cadastro</title>
+                <meta property="og:url" content={window.location.href} />
+            </Helmet>
             <Row className="justify-content-center">
                 <Col md="5" style={{ backgroundColor: '#c8c8c8', borderRadius: '10px' }}>
                     <Row >
