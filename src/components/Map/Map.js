@@ -3,6 +3,7 @@ import { Map, Marker, Popup, TileLayer } from 'react-leaflet';
 import { Icon } from 'leaflet';
 import firebase from 'firebase/app';
 import { ButtonStyled } from '../Places/Places.styled';
+import ModalAnswer from '../ModalAnswer/ModalAnswer';
 
 const skater = new Icon({
     iconUrl: '/logo.png',
@@ -13,27 +14,9 @@ const skater = new Icon({
 function Mapa() {
     const [activeLocal, setActiveLocal] = useState(null);
     const [place, setPlace] = useState([]);
+    const [modal, setModal] = useState(false);
 
-    // function LocationMarker() {
-    //     const [position, setPosition] = useState(null);
-    //     const map = useMapEvents({
-    //         click() {
-    //             map.locate()
-    //         },
-    //         locationfound(e) {
-    //             setPosition(e.latlng)
-    //             map.flyTo(e.latlng, map.getZoom())
-    //         },
-    //     })
-
-    //     return position === null ? null : (
-    //         <Marker position={position} removable editable>
-    //             <Popup>You are here</Popup>
-    //         </Marker>
-    //     )
-    // }
-
-
+    const toggle = () => setModal(!modal);
     useEffect(() => {
         firebase
             .firestore()
@@ -76,6 +59,7 @@ function Mapa() {
                     />
                 ))}
 
+
                 {activeLocal && (
                     <Popup
                         position={[
@@ -89,10 +73,13 @@ function Mapa() {
                         <div>
                             <h2>{activeLocal.name}</h2>
                             <p>{activeLocal.description}</p>
-                            <ButtonStyled style={{color: 'white'}} className="mt-2" href={`/questionario:${activeLocal.name}`}>Responder o Questionário!</ButtonStyled>
+                            <ButtonStyled style={{ color: 'white' }} className="mt-2" onClick={toggle}>Responder o Questionário!</ButtonStyled>
                         </div>
 
                     </Popup>
+                )}
+                {modal && (
+                    <ModalAnswer modal={modal} setModal={setModal} toggle={toggle} activeLocal={activeLocal}/>
                 )}
             </Map>
         </div>

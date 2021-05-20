@@ -6,7 +6,6 @@ import SignIn from './components/Authentication/SignIn';
 import SignUp from './components/Authentication/SignUp';
 import FormPlace from './components/Places/FormPlace';
 import ListPlaces from './components/Places/ListPlaces';
-import Question from './components/Question/Question';
 
 import LandingPage from './pages/LandingPage';
 import Maping from './pages/Maping';
@@ -48,11 +47,6 @@ class Routes extends Component {
                 <Route
                     path="/lista-locais"
                     render={props => RenderAuthenticated(ListPlaces, props)}
-                />
-                <Route
-                    path="/questionario:id"
-                    render={props => RenderAuthenticated(Question, props)}
-                    user={this.props.user}
                 />
                 <Redirect to="/" />
             </Switch>
