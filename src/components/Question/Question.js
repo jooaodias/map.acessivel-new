@@ -1,4 +1,4 @@
-import React, { useState } from 'react'
+import React, { useEffect, useState } from 'react'
 import { Col, Container, Row } from 'reactstrap'
 import { Text } from './Question.styled'
 import { questions } from '../../data/questions';
@@ -8,21 +8,40 @@ import Form from 'reactstrap/lib/Form';
 import firebase from 'firebase/app';
 import Spinner from 'reactstrap/lib/Spinner';
 
+const random = Math.random().toString(36).substr(2, 9);
+
+const questionsAnswered = {
+    random : [
+        { id: 0, value: 'af' },
+        { id: 1, value: 'czz' },
+        { id: 2, value: 'aweaw' },
+        { id: 3, value: 'dasdas' },
+        { id: 4, value: 'fdf' },
+        { id: 5, value: 'sfa' },
+        { id: 6, value: '' },
+        { id: 7, value: '' },
+        { id: 8, value: '' },
+        { id: 9, value: '' },
+        { id: 10, value: '' },
+        { id: 11, value: '' },
+    ]
+}
 
 const Question = () => {
-
     const [loading, setLoading] = useState(false);
 
     const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log(questionsAnswered)
         setLoading(true);
 
         await firebase
             .firestore()
-            .collection('rating')
-            .doc()
-            .add({
-            })
+            .collection("places")
+            .doc('wIkNwJpunw4gmlaGavRa')
+            .update(
+                { questionTotal: firebase.firestore.FieldValue.arrayUnion(questionsAnswered) }
+            )
             .then(function () {
                 console.log("Document successfully written!");
 
