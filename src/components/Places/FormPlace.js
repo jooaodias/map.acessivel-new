@@ -21,11 +21,13 @@ const FormPlace = () => {
         const phone = document.getElementById('phone').value;
         const city = document.getElementById('city').value;
         const description = document.getElementById('description').value;
+        const idLocal = Math.random().toString(36).substr(2,12);
+        const questionTotal = []
         await firebase
             .firestore()
             .collection('places')
             .add({
-                name, adress, neigh, city, ADnumber, description, phone
+                name, adress, neigh, city, ADnumber, description, phone, idLocal, questionTotal
             })
             .then(function () {
                 setSuccessMessage(`Cadastro Realizado com Sucesso! Em alguns instantes o ${name} estará disponível para todos`);
