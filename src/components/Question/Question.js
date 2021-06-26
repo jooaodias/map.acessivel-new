@@ -10,7 +10,7 @@ import firebase from 'firebase/app';
 
 
 const Question = (props) => {
-    const { local } = props
+    const { local, setModal } = props
     const [loading, setLoading] = useState(false);
     const [messageSuccess, setMessageSuccess] = useState(null);
     const [messageError, setMessageError] = useState(null);
@@ -56,6 +56,9 @@ const Question = (props) => {
                                 })
                             })
                             setMessageSuccess('Questionário respondido com sucesso')
+                            setTimeout(()=>{
+                                setModal(false);
+                            }, 2000)
 
                         })
                         .catch(function (error) {

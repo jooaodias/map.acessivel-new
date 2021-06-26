@@ -6,6 +6,7 @@ import firebase from 'firebase/app';
 
 function App() {
   const [user, setUser] = useState(null);
+
   useEffect(() => {
     firebase.auth().onAuthStateChanged(user => {
       if (user) {
@@ -15,10 +16,9 @@ function App() {
     });
   }, []);
 
-  console.log(user);
   return (
     <Layout user={user}>
-      <Routes user={user}/>
+      <Routes user={user} />
     </Layout>
   );
 }

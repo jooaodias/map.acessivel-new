@@ -3,6 +3,7 @@ import { Helmet } from "react-helmet";
 import { Alert, Col, Container, Form, FormGroup, Label, Row, Spinner } from 'reactstrap'
 import { ButtonStyled, InputStyled, Text } from './Places.styled';
 
+import { OpenStreetMapProvider } from "leaflet-geosearch";
 import firebase from 'firebase/app';
 import { Title } from '../../styles/Title';
 
@@ -10,6 +11,26 @@ const FormPlace = () => {
     const [loading, setLoading] = useState(false);
     const [errorMessage, setErrorMessage] = useState(null);
     const [successMessage, setSuccessMessage] = useState(null);
+    const [coordinates, setCoordiantes] = useState([]);
+
+
+    function getLatLang(local) {
+        var response = []
+        const provider = new OpenStreetMapProvider();
+
+        // search
+        provider.search({ query: local }).then(function (result) {
+            response = result;
+            // do something with result;
+        }).then(() => {
+            const lat = response[0].y
+            const lang = response[0].x
+
+            setCoordiantes(lat, lang)
+        });
+    }
+
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -21,13 +42,24 @@ const FormPlace = () => {
         const phone = document.getElementById('phone').value;
         const city = document.getElementById('city').value;
         const description = document.getElementById('description').value;
-        const idLocal = Math.random().toString(36).substr(2,12);
+        const idLocal = Math.random().toString(36).substr(2, 12);
         const questionTotal = []
+
+        if (name.trim() === '' && adress.trim() === '' && neigh.trim() === '' && ADnumber.trim() === '' && phone.trim() === '' && city.trim() === '' && description.trim() === '') {
+            setErrorMessage('Responda todo(s) o(s) campo(s)!')
+            setLoading(false)
+            return
+        }
+        getLatLang(`${adress} ${neigh} ${ADnumber} ${city} Brasil`)
+        // const coordinates = [...resultCoordinates]
+
+
+
         await firebase
             .firestore()
             .collection('places')
             .add({
-                name, adress, neigh, city, ADnumber, description, phone, idLocal, questionTotal
+                name, adress, neigh, city, ADnumber, description, phone, idLocal, questionTotal, location: [...coordinates]
             })
             .then(function () {
                 setSuccessMessage(`Cadastro Realizado com Sucesso! Em alguns instantes o ${name} estará disponível para todos`);
@@ -39,7 +71,7 @@ const FormPlace = () => {
                 console.error("Erro na gravação pelo motivo: ", error);
 
             });
-            setLoading(false);
+        setLoading(false);
 
     }
 
@@ -62,7 +94,6 @@ const FormPlace = () => {
                                 {loading && (
                                     <Spinner data-testid="signup-loader" color="primary" />
                                 )}
-                                {errorMessage && <Alert color="danger">{errorMessage}</Alert>}
                                 <FormGroup className="mb-4 mt-2">
                                     <Label for="name"><Title color="#4A619F" size="1.0rem">Nome do Estabelecimento:</Title></Label>
                                     <InputStyled type="text" id="name" placeholder="Digite o Nome do Estabelecimento" />
@@ -98,6 +129,7 @@ const FormPlace = () => {
                                     <InputStyled type="text" id="phone" placeholder="Digite o Telefone" />
                                 </FormGroup>
 
+                                {errorMessage && <Alert color="danger">{errorMessage}</Alert>}
                                 {successMessage && <Alert color="success">{successMessage}</Alert>}
                                 <ButtonStyled className="px-5 py-2 mt-2 mb-4">ENVIAR</ButtonStyled>
                             </Form>

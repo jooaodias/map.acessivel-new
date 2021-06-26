@@ -28,13 +28,14 @@ function Mapa() {
                     console.log(place.name)
                     // console.log(doc.data().name);
                     setPlace((places) => [...places, place]);
-
+                    console.log(place)
+                    
                 });
             })
             .catch(function (error) {
                 console.log("Error getting documents: ", error);
             });
-
+            
 
     }, [])
 

@@ -1,4 +1,4 @@
-import React, { Component } from 'react';
+import React from 'react';
 import { Route, Switch, Redirect } from 'react-router-dom';
 import Authentication from './components/Authentication/AuthenticationRoute';
 import ForgotPassword from './components/Authentication/ForgotPassword';
@@ -18,46 +18,45 @@ const RenderAuthenticated = (Component, props) => (
     </Authentication>
 );
 
-class Routes extends Component {
-    render() {
-        const displayName = this.props.user?.displayName;
-        const routes = (
-            <Switch>
-                <Route exact path="/" component={LandingPage} />
-                {/* <Route exact path="/mapa" component={Mapa}/> */}
-                <Route exact path="/esqueci-senha" component={ForgotPassword} />
-                <Route exact path="/login" >
-                    {displayName ? <Redirect to="/" /> : <SignIn />}
-                </Route>
-                <Route exact path="/cadastro">
-                    {displayName ? <Redirect to="/" /> : <SignUp />}
-                </Route>
-                <Route
-                    path="/mapa"
-                    render={props => RenderAuthenticated(Maping, props)}
-                />
-                <Route
-                    path="/perfil"
-                    render={props => RenderAuthenticated(Perfil, props)}
-                />
-                <Route
-                    path="/cadastro-local"
-                    render={props => RenderAuthenticated(FormPlace, props)}
-                />
-                <Route
-                    path="/lista-locais"
-                    render={props => RenderAuthenticated(ListPlaces, props)}
-                />
-                <Redirect to="/" />
-            </Switch>
-        );
+function Routes(props) {
+    const displayName = props.user?.displayName;
+    const routes = (
+        <Switch>
+            <Route exact path="/" component={LandingPage} />
+            {/* <Route exact path="/mapa" component={Mapa}/> */}
+            <Route exact path="/esqueci-senha" component={ForgotPassword} />
+            <Route exact path="/login" >
+                {displayName ? <Redirect to="/" /> : <SignIn />}
+            </Route>
+            <Route exact path="/cadastro">
+                {displayName ? <Redirect to="/" /> : <SignUp />}
+            </Route>
+            <Route
+                path="/mapa"
+                render={props => RenderAuthenticated(Maping, props)}
+            />
+            <Route
+                path="/perfil"
+                render={props => RenderAuthenticated(Perfil, props)}
+            />
+            <Route
+                path="/cadastro-local"
+                render={props => RenderAuthenticated(FormPlace, props)}
+            />
+            <Route
+                path="/lista-locais"
+                render={props => RenderAuthenticated(ListPlaces, props)}
+            />
+            <Redirect to="/" />
+        </Switch>
+    );
 
-        return (
-            <React.Fragment>
-                {routes}
-            </React.Fragment>
-        );
-    }
+    return (
+        <React.Fragment>
+            {routes}
+        </React.Fragment>
+    );
+
 }
 
 

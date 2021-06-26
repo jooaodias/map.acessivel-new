@@ -12,7 +12,7 @@ const ModalAnswer = (props) => {
             <ModalHeader toggle={toggle}>{`${activeLocal.name} - ${activeLocal.city}`}</ModalHeader>
             <ModalBody>
                 {activeLocal.description}
-                <Question local={activeLocal}/>
+                <Question local={activeLocal} modal={modal} setModal={setModal}/>
             </ModalBody>
             <ModalFooter>
                 
