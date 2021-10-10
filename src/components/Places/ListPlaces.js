@@ -46,7 +46,9 @@ const ListPlaces = () => {
             <hr />
             {place.map((local, index) => (
                 <div key={local.name} className="mb-3">
-                    <Text>{index + 1} - <b>Estabelecimento:</b> {local.name} <br /><b>Endereço</b>: {local.adress + ' - ' + local.neigh + ' ' + local.ADnumber + ', ' + local.city}</Text>
+                    <Text>{index + 1} - <b>Estabelecimento:</b> {local.name} <br /><b>Endereço</b>: {local.adress + ' - ' + local.neigh + ' ' + local.ADnumber + ', ' + local.city}
+                        <br></br><a href={`/local:#${local.idLocal}`}><b>Perfil</b></a> 
+                    </Text>
                 </div>
             ))}
         </Container>

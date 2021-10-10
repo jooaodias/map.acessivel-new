@@ -20,9 +20,9 @@ function Menu(props) {
   };
   const itens = [
     { nome: "Início", link: '/' },
-    { nome: "O Projeto", link: "#oProjeto" },
-    { nome: "Leis", link: '#LeisDeAcessibilidade' },
-    { nome: "Quem Somos?", link: '#QuemSomos' },
+    { nome: "O Projeto", link: "/#oProjeto" },
+    { nome: "Leis", link: '/#LeisDeAcessibilidade' },
+    { nome: "Quem Somos?", link: '/#QuemSomos' },
     // { nome: "Ajude", link: "#Cadastro" }
   ]
 

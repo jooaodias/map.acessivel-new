@@ -9,7 +9,7 @@ import { Button } from '../components/Button';
 import humano from '../assets/images/humanos.png';
 
 const StyledHeader = styled.header`
-  background-image: url(${require('../assets/images/fundoHome.png')});
+  background-image: url(${process.env.PUBLIC_URL+'/fundoHome.png'});
   background-size: cover;
   background-position: center;
   background-repeat: no-repeat;

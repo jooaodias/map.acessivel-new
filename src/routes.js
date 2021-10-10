@@ -8,6 +8,7 @@ import FormPlace from './components/Places/FormPlace';
 import ListPlaces from './components/Places/ListPlaces';
 
 import LandingPage from './pages/LandingPage';
+import Local from './pages/Local';
 import Maping from './pages/Maping';
 import Perfil from './pages/Perfil/Perfil';
 // import firebase from 'firebase/app';
@@ -41,11 +42,16 @@ function Routes(props) {
             />
             <Route
                 path="/cadastro-local"
-                render={props => RenderAuthenticated(FormPlace, props)}
+                render={props => RenderAuthenticated(FormPlace, props)} 
             />
             <Route
                 path="/lista-locais"
                 render={props => RenderAuthenticated(ListPlaces, props)}
+            />
+
+            <Route 
+                path="/local:id"
+                render={props=> RenderAuthenticated(Local,props)}
             />
             <Redirect to="/" />
         </Switch>

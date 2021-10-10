@@ -4,6 +4,9 @@ import { Icon } from 'leaflet';
 import firebase from 'firebase/app';
 import { ButtonStyled } from '../Places/Places.styled';
 import ModalAnswer from '../ModalAnswer/ModalAnswer';
+import calculatePontuation from '../../helpers/calculatePontuation';
+import CalculationColor from '../../helpers/calculationColor';
+import { faBlind, faDeaf, faWheelchair } from '@fortawesome/free-solid-svg-icons';
 
 const skater = new Icon({
     iconUrl: '/logo.png',
@@ -25,19 +28,39 @@ function Mapa() {
             .then(function (querySnapshot) {
                 querySnapshot.forEach(function (doc) {
                     let place = doc.data();
-                    console.log(place.name)
+
                     // console.log(doc.data().name);
                     setPlace((places) => [...places, place]);
-                    console.log(place)
-                    
+                    // console.log(place)
+
                 });
             })
             .catch(function (error) {
                 console.log("Error getting documents: ", error);
             });
-            
+
 
     }, [])
+
+    if (activeLocal) {
+        const questionTotal = place.map((local) => local.questionTotal)
+        const positionFilter = questionTotal.findIndex((question) => question === activeLocal.questionTotal)
+
+        const questions = questionTotal[positionFilter]
+
+        const converse = questions?.map((obj) => {
+            return Object.keys(obj).map(key => obj[key])
+        })
+
+
+
+
+        var calculation = calculatePontuation(converse)
+
+        console.log(calculation)
+    }
+
+
 
     return (
         <div>
@@ -74,13 +97,19 @@ function Mapa() {
                         <div>
                             <h2>{activeLocal.name}</h2>
                             <p>{activeLocal.description}</p>
+                            <div>
+                                <CalculationColor calculation={calculation.contBlind} icon={faBlind}/>
+                                <CalculationColor calculation={calculation.contWheilchair} icon={faWheelchair}/>
+                                <CalculationColor calculation={calculation.contDeaf} icon={faDeaf}/>
+                                
+                            </div>
                             <ButtonStyled style={{ color: 'white' }} className="mt-2" onClick={toggle}>Responder o Questionário!</ButtonStyled>
                         </div>
 
                     </Popup>
                 )}
                 {modal && (
-                    <ModalAnswer modal={modal} setModal={setModal} toggle={toggle} activeLocal={activeLocal}/>
+                    <ModalAnswer modal={modal} setModal={setModal} toggle={toggle} activeLocal={activeLocal} calculation={calculation}/>
                 )}
             </Map>
         </div>
