@@ -7,12 +7,18 @@ import ModalAnswer from '../ModalAnswer/ModalAnswer';
 import calculatePontuation from '../../helpers/calculatePontuation';
 import CalculationColor from '../../helpers/calculationColor';
 import { faBlind, faDeaf, faWheelchair } from '@fortawesome/free-solid-svg-icons';
+import styled from 'styled-components';
 
 const skater = new Icon({
     iconUrl: '/logo.png',
     iconSize: [30, 40]
 
 })
+
+const DivColor = styled.div`
+    display: flex;
+    justify-content: center;
+`
 
 function Mapa() {
     const [activeLocal, setActiveLocal] = useState(null);
@@ -71,7 +77,7 @@ function Mapa() {
                 />
                 {/* <LocationMarker /> */}
 
-                {place.map(local => (
+                {place.filter(local => local.isValidated).map(local => (
                     <Marker
                         key={local.name}
                         position={[local.location[0], local.location[1]]}
@@ -97,12 +103,12 @@ function Mapa() {
                         <div>
                             <h2>{activeLocal.name}</h2>
                             <p>{activeLocal.description}</p>
-                            <div>
-                                <CalculationColor calculation={calculation.contBlind} icon={faBlind}/>
-                                <CalculationColor calculation={calculation.contWheilchair} icon={faWheelchair}/>
-                                <CalculationColor calculation={calculation.contDeaf} icon={faDeaf}/>
+                            <DivColor>
+                                <CalculationColor calculation={calculation.contBlind} icon={faBlind} title="deficiente visual"/>
+                                <CalculationColor calculation={calculation.contWheilchair} icon={faWheelchair} title="deficiente físico"/>
+                                <CalculationColor calculation={calculation.contDeaf} icon={faDeaf} title="deficiente auditivo"/>
                                 
-                            </div>
+                            </DivColor>
                             <ButtonStyled style={{ color: 'white' }} className="mt-2" onClick={toggle}>Responder o Questionário!</ButtonStyled>
                         </div>
 
