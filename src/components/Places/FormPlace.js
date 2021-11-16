@@ -23,10 +23,15 @@ const FormPlace = () => {
   //   const [coordinates, setCoordiantes] = useState([]);
 
   async function getLatLang(local) {
-    var response = [];
     const provider = new OpenStreetMapProvider();
 
     const result = await provider.search({ query: local });
+    if (!result) {
+      setErrorMessage(
+        'Problema ao cadastrar. Recarrega a página e tente novamente!'
+      );
+      return;
+    }
     const lat = result[0].y;
     const lang = result[0].x;
     return [lat, lang];
