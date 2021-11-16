@@ -21,7 +21,7 @@ Equipe formado por estudantes do IFSP Campinas
     ```
     
  - Vá ao navegador e digite:
- http://localhost:8000/
+ http://localhost:3000/
 
 ## Tecnologias
 - [React](https://reactjs.org/)
